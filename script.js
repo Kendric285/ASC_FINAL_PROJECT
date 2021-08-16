@@ -1,3 +1,4 @@
+//https://kendric285.github.io/ASC_FINAL_PROJECT/
 
 let submitButton = document.getElementById("zipCodeButton")
 let userZipCode = document.getElementById("userInput")
@@ -5,12 +6,14 @@ let userState = document.getElementById("userState")
 let zipCodes
 let apiKey = "cb74dbd635444e9498be72c410a9d156"
 
-// submitButton.addEventListener("click", findVaccineCenters)
-// submitButton.addEventListener("click" , covidInfo)
+let cdcTransmissionLevel = ["Low", "Moderate", "Substantial", "High", "Uknown"]
+let information = document.getElementById("information")
+information.style.visibility = "hidden"
 
 submitButton.onclick = function(){
   findVaccineCenters()
   covidInfo()
+
 }
 
 function covidInfo(){
@@ -22,13 +25,24 @@ function covidInfo(){
     }).then(function (data) {
         console.log(data.state)
         //case density is new cases per 100k
+        information.style.visibility = "visible"
+
+        let positiveTestRateText = document.createElement("p")
+        let newDeathsText = document.createElement("p")
+        let newCasesText = document.createElement("p")
+        let cdcTransmissionLevelText = document.createElement("p")
+
         let positiveTestRate = ((data.metrics.testPositivityRatio) * 100).toFixed(1) + "%"
         let newDeaths = data.actuals.newDeaths
         let newCases = data.actuals.newCases
+        cdcTransmissionLevel = cdcTransmissionLevel[data.cdcTransmissionLevel]
         
         console.log(newDeaths + " new deaths")
         console.log(newCases + " new cases")
         console.log(positiveTestRate)
+        console.log(cdcTransmissionLevel)
+
+        
 
     })
 }
@@ -42,27 +56,21 @@ function findVaccineCenters(){
 
           let zip = userZipCode.value
           zipCodes = []
-          let test = document.getElementById("test")
+          let test = document.getElementById("vaccineCenters")
           let locations = data.features
+          
           for(i in locations){
             zipCodes.push(
               {
                 "zipCode": locations[i].properties["postal_code"],
                 "index": i
               }
-              
             )
-            // let zip = data.features[i].properties['postal_code']
           }
-     
+
           test.innerHTML = ""
-          // console.log(closest(zip))
-          // closest(zip)
-
           console.log(findKClosestElements(zipCodes, 10, zip))
-
           let closestCenters = findKClosestElements(zipCodes, 10, zip)
-          //
 
           for(i in closestCenters){
             let l = document.createElement("p")
@@ -71,88 +79,9 @@ function findVaccineCenters(){
           }
       })
 }
-function closest (num){
-    let curr = zipCodes[0]
-    let closeIndex
-    obj = []
-    let inObj
-    let item = {}
-    for(i = 0; i < 10; i++){
-      for(val in zipCodes){ 
-        
-        if (Math.abs(num - zipCodes[val]) < Math.abs(num - curr)){
-            item = {
-              "zipCode": zipCodes[val],
-              "index": val
-            }
-            if(check(item) == true){
-              closeIndex = val
-              curr = zipCodes[val]
-
-              item = {
-                "zipCode": curr,
-                "index": closeIndex
-              }
-              addItem(item)
-            }
-        }
-        
-      }
-      // console.log(closeIndex)
-      // zipCodes.splice(closeIndex, 1);
-      
-      
-    }   
-    return obj
-}
-
-function addItem(item) {
-  var index = obj.findIndex(x => x.index == item.index)
-  if (index === -1) {
-    obj.push(item);
-  }else {
-    console.log("object already exists")
-  }
-}
-
-let testArray = [
-  {
-    "index": 5
-  },
-  {
-    "index": 10
-  },
-
-]
-
-
-function check(item) {
-  var index = obj.findIndex(x => x.index == item.index)
-  if (index === -1) {
-    return true
-  }else {
-    return false
-  }
-}
-
-function checkTest(item) {
-  var index = testArray.findIndex(x => x.index == item.index)
-  if (index === -1) {
-    return true
-  }else {
-    return false
-  }
-}
-
-let testItem = {
-  "index": 5
-}
-console.log(checkTest(testItem))
-
 function findKClosestElements(arr, k, x){
     let left = 0;
     let right = arr.length - 1;
-
     while (right - left >= k){
         if(Math.abs(arr[left].zipCode - x) > Math.abs(arr[right].zipCode - x)){
             left = left + 1;
@@ -160,10 +89,22 @@ function findKClosestElements(arr, k, x){
         else{
             right = right - 1;
         }
-
     }
     return arr.slice(left, left + k) 
 }
+
+// Need to translate this
+// def findKClosestElements(arr, k, x):
+//     left = 0
+//     right = len(arr) - 1
+    
+//     while right - left >= k:
+//         if abs(arr[left] - x) > abs(arr[right] - x):
+//             left = left + 1
+//         else:
+//             right = right - 1
+ 
+//     return arr[left:left + k]
 
 
 

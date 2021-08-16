@@ -1,10 +1,59 @@
+/* Entire Body */
 body {
-  text-align: center;
-
-}
-
-#test {
     font-weight: bold;
+    text-align: center;
+    background-color: rgb(19, 211, 169);
+    border: 3px solid #6301C6;
+    margin: 30px;
+    padding: 30px;
+  }
+  /* rgb(19, 211, 169)*/
+  #userInput {
+    background-color: aquamarine;
+    border: 5px solid #4ddf13;
+  }
+  
+  #userState {
+    background-color: rgb(127, 168, 255);
+    border: 5px solid #4ddf13;
+  }
+  
+  #zipCodeButton {
+    background-color: rgb(255, 132, 153);
+  }
+  
+  #vaccineCenters {
+    
+  }
+  
+  #information {
+    
+  }
 
-}  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="myDIV">Fantastic Four</div>
+            <div class="hide">  Aiden-Kendric-Hector-Gavin </div>
