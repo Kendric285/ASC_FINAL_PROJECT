@@ -1,9 +1,10 @@
 /* Entire Body */
 body {
+    font-family: Helvetica;
     font-weight: bold;
     text-align: center;
     background-color: rgb(19, 211, 169);
-    border: 3px solid #6301C6;
+    border: 8px solid #6301C6;
     margin: 30px;
     padding: 30px;
   }
@@ -19,15 +20,20 @@ body {
   }
   
   #zipCodeButton {
-    background-color: rgb(255, 132, 153);
+    background-color: rgb(24, 126, 4);
+    border: 5px dashed rgba(226, 228, 97, 0.801); 
   }
-  
+  /* add whatever below bois */
   #vaccineCenters {
-    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
-  
+  .et {
+    border-block-start-color: 5px blueviolet;
+  }
   #information {
-    
+    color: rgba(100, 29, 11, 0.973);
   }
 
 
@@ -38,6 +44,14 @@ body {
 
 
 
+      .hide {
+    display: none;
+    }
+    
+        .myDIV:hover + .hide {
+  display: block;
+  color: purple;
+}
 
 
 
@@ -55,5 +69,31 @@ body {
 
 
 
-  <div class="myDIV">Fantastic Four</div>
-            <div class="hide">  Aiden-Kendric-Hector-Gavin </div>
+  
+
+
+
+
+
+
+
+  
+#cf {
+  position:relative;
+  height:400px;
+  width:596px;
+  margin:0 auto;
+}
+
+#cf img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#cf img.top:hover {
+  opacity:0;
+}
