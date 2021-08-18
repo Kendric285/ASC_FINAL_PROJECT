@@ -6,13 +6,20 @@
     <title>COVID INFO CENTER</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
+  
   <body>
-      <label class= "et" for="userInput">Enter Your Zip Code To Find Vaccine Centers Close To You</label>
-      <input class = "et" id = "userInput" type="text">
+    <div id="cf">
+  <img class="bottom" src="cic.png"/>
+  <img class="top" src="Logo2.png" />
+</div>
+
+    
+      <label  for="userInput">Enter Your Zip Code To Find Vaccine Centers Close To You</label>
+      <input  id = "userInput" type="text">
 
       <br>
 
-      <label for="userState">Select The State You Live In</label>
+      <label id="et"for="userState">Select The State You Live In</label>
       <select id = "userState">
           <option value="AL">Alabama</option>
           <option value="AK">Alaska</option>
@@ -72,17 +79,67 @@
       <button id ="zipCodeButton">Submit</button>
       </div>
 
-<div id="cf">
-  <img class="bottom" src="cic.png"/>
-  <img class="top" src="Logo2.png" />
-</div>
 
     
 
 
       
-      <div id = "information">
+      <div id = "information" style="">
+        <hr>
         <h1 >Data according to your state</h1>
+
+        <div id = "general">
+          <h1>General Information</h1>
+          <div id = "gHolder" class="holders">
+            <div id = "newCases">
+              <h2>Daily New Cases</h2>
+             </div>
+            <div id = "infectionRate">
+              <h2>Infection Rate</h2>
+             </div>
+            <div id = "positiveTestRate">
+              <h2>Positive Test Rate</h2>
+            </div>
+            <div  id = "percentVaxxed" >
+              <h2>% Vaccinated</h2>
+           </div>
+           <div id = "risk">
+              <h2>Risk Level</h2>
+          </div>
+          </div>
+        </div>
+
+        <div id = "vaccinations">
+      
+          <h1>% Vaccinated</h1>
+          <div id = "vHolder" class="holders">
+            <div id = "oneDose">
+              <h2>+1 Dose</h2>
+            </div>
+            <div id = "fullyVaxxed">
+              <h2>Fully Vaccinated</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div id = "cases">
+          <h1>Cases</h1>
+          <div id = "cHolder" class="holders">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div> -->
+
+        <div id = "hospitalizations">
+          <h1>Hospitalizations</h1>
+          <div id = "hHolder" class="holders">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+
       </div>
 
       <div class="myDIV">Fantastic Four</div>

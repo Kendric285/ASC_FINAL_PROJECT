@@ -1,5 +1,4 @@
 //https://kendric285.github.io/ASC_FINAL_PROJECT/
-
 let submitButton = document.getElementById("zipCodeButton")
 let userZipCode = document.getElementById("userInput")
 let userState = document.getElementById("userState")
@@ -13,12 +12,7 @@ information.style.visibility = "hidden"
 submitButton.onclick = function(){
   findVaccineCenters()
   covidInfo()
-
-   
-
 }
-
-
 
 function covidInfo(){
   let state = userState.value
@@ -28,35 +22,56 @@ function covidInfo(){
         return response.json();
     }).then(function (data) {
         console.log(data.state)
+        console.log("hello")
         //case density is new cases per 100k
         information.style.visibility = "visible"
 
+        let riskLevelDiv = document.getElementById("risk")
+        let newCasesDiv = document.getElementById("newCases")
+        let infectionRateDiv = document.getElementById("infectionRate")
+        let positiveTestRateDiv = document.getElementById("positiveTestRate")
+        let percentVaccinatedDiv = document.getElementById("percentVaxxed")
+        let oneDoseDiv = document.getElementById("oneDose")
+        let fullyVaxxedDiv = document.getElementById("fullyVaxxed")
 
-
-        let positiveTestRateText = document.createElement("p")
-        let newDeathsText = document.createElement("p")
+        let riskLevelText = document.createElement("p")
         let newCasesText = document.createElement("p")
-        let cdcTransmissionLevelText = document.createElement("p")
+        let infectionRateText = document.createElement("p")
+        let positiveTestRateText = document.createElement("p")
+        let percentVaccinatedText = document.createElement("p")
+        let oneDoseText = document.createElement("p")
+        let fullyVaxxedText = document.createElement("p")
 
         let positiveTestRate = ((data.metrics.testPositivityRatio) * 100).toFixed(1) + "%"
         let newDeaths = data.actuals.newDeaths
-        let newCases = data.actuals.newCases
+        let oneDose = ((data.actuals.vaccinationsInitiated / data.population) * 100).toFixed(1) + "%"
+        let fullyVaxxed = ((data.actuals.vaccinationsCompleted / data.population) * 100).toFixed(1) + "%"
+        let newCases = data.metrics.caseDensity
+        let infectionRate = data.metrics.infectionRate
+
         cdcTransmissionLevel = cdcTransmissionLevel[data.cdcTransmissionLevel]
 
-        positiveTestRateText.innerHTML = "Positive Test Rate: " + positiveTestRate
-        newDeathsText.innerHTML = "New Deaths: " + newDeaths
-        newCasesText.innerHTML = "New Cases: " + newCases
-        cdcTransmissionLevelText.innerHTML = "CDC Transmission Level: " + cdcTransmissionLevel
-        
-        console.log(newDeaths + " new deaths")
-        console.log(newCases + " new cases")
-        console.log(positiveTestRate)
-        console.log(cdcTransmissionLevel)
+        // positiveTestRateText.innerHTML = "Positive Test Rate: " + positiveTestRate
+        // newDeathsText.innerHTML = "New Deaths: " + newDeaths
+        // newCasesText.innerHTML = "New Cases: " + newCases
+        riskLevelText.innerHTML = cdcTransmissionLevel
+        newCasesText.innerHTML = newCases + " per 100k"
+        infectionRateText.innerHTML = infectionRate
+        positiveTestRateText.innerHTML = positiveTestRate
+        percentVaccinatedText.innerHTML = oneDose
+        oneDoseText.innerHTML = oneDose
+        fullyVaxxedText.innerHTML = fullyVaxxed
 
-        information.appendChild(positiveTestRateText)
-        information.appendChild(newDeathsText)
-        information.appendChild(newCasesText)
-        information.appendChild(cdcTransmissionLevelText)
+        console.log(fullyVaxxed)
+
+
+        riskLevelDiv.appendChild(riskLevelText)
+        newCasesDiv.appendChild(newCasesText)
+        infectionRateDiv.appendChild(infectionRateText)
+        positiveTestRateDiv.appendChild(positiveTestRateText)
+        percentVaccinatedDiv.appendChild(percentVaccinatedText)
+        oneDoseDiv.appendChild(oneDoseText)
+        fullyVaxxedDiv.appendChild(fullyVaxxedText)
 
         
 
@@ -123,6 +138,11 @@ function findKClosestElements(arr, k, x){
     return arr.slice(left, left + k) 
 }
 
+const onClick = function() {
+  console.log(this.id);
+  let address = this.id
+  window.open('https://www.google.com/maps/search/' + address, '_blank');
+}
 // Need to translate this
 // def findKClosestElements(arr, k, x):
 //     left = 0
@@ -138,8 +158,4 @@ function findKClosestElements(arr, k, x){
 
 
 
-const onClick = function() {
-  console.log(this.id);
-  let address = this.id
-  window.open('https://www.google.com/maps/search/' + address, '_blank');
-}
+
