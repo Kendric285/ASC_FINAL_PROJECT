@@ -9,6 +9,9 @@ let cdcTransmissionLevel = ["Low", "Moderate", "Substantial", "High", "Uknown"]
 let information = document.getElementById("information")
 information.style.visibility = "hidden"
 
+let test = document.getElementById("vaccineCenters")
+test.style.visibility = "hidden"
+
 submitButton.onclick = function(){
   findVaccineCenters()
   covidInfo()
@@ -33,7 +36,7 @@ function covidInfo(){
         let percentVaccinatedDiv = document.getElementById("percentVaxxed")
         let oneDoseDiv = document.getElementById("oneDose")
         let fullyVaxxedDiv = document.getElementById("fullyVaxxed")
-        let icuUsedDiv = document.getElementById("icuUsed")
+        // let icuUsedDiv = document.getElementById("icuUsed")
 
         let riskLevelText = document.createElement("p")
         let newCasesText = document.createElement("p")
@@ -42,7 +45,7 @@ function covidInfo(){
         let percentVaccinatedText = document.createElement("p")
         let oneDoseText = document.createElement("p")
         let fullyVaxxedText = document.createElement("p")
-        let icuUsedText = document.createElement("p")
+        // let icuUsedText = document.createElement("p")
 
         let positiveTestRate = ((data.metrics.testPositivityRatio) * 100).toFixed(1) + "%"
         let newDeaths = data.actuals.newDeaths
@@ -64,7 +67,7 @@ function covidInfo(){
         percentVaccinatedText.innerHTML = oneDose
         oneDoseText.innerHTML = oneDose
         fullyVaxxedText.innerHTML = fullyVaxxed
-        icuUsedText.innerHTML = icuUsed
+        // icuUsedText.innerHTML = icuUsed
 
         console.log(fullyVaxxed)
 
@@ -76,7 +79,7 @@ function covidInfo(){
         percentVaccinatedDiv.appendChild(percentVaccinatedText)
         oneDoseDiv.appendChild(oneDoseText)
         fullyVaxxedDiv.appendChild(fullyVaxxedText)
-        icuUsedDiv.appendChild(icuUsedText)
+        // icuUsedDiv.appendChild(icuUsedText)
 
         
 
@@ -94,7 +97,8 @@ function findVaccineCenters(){
           zipCodes = []
           let test = document.getElementById("vaccineCenters")
           let locations = data.features
-          
+          test.style.visibility = "visible"
+
           for(i in locations){
             zipCodes.push(
               {
@@ -107,6 +111,11 @@ function findVaccineCenters(){
           test.innerHTML = ""
           console.log(findKClosestElements(zipCodes, 10, zip))
           let closestCenters = findKClosestElements(zipCodes, 10, zip)
+
+          let randText = document.createElement("h2")
+          randText.innerHTML = "Closest Vaccine Centers"
+          randText.style.color = "rgb(199, 21, 140)"
+          test.appendChild(randText)
 
           for(i in closestCenters){
             let locationDiv = document.createElement("div")

@@ -104,6 +104,12 @@ img{
 #vaccineCenters{
   display: flex;
   justify-content: left;
+  border: 8px solid rgb(24, 27, 43);
+  width: 50%;
+  margin: auto;
 }
 
 
+.holders h2{
+  color: black;
+}
