@@ -33,6 +33,7 @@ function covidInfo(){
         let percentVaccinatedDiv = document.getElementById("percentVaxxed")
         let oneDoseDiv = document.getElementById("oneDose")
         let fullyVaxxedDiv = document.getElementById("fullyVaxxed")
+        let icuUsedDiv = document.getElementById("icuUsed")
 
         let riskLevelText = document.createElement("p")
         let newCasesText = document.createElement("p")
@@ -41,6 +42,7 @@ function covidInfo(){
         let percentVaccinatedText = document.createElement("p")
         let oneDoseText = document.createElement("p")
         let fullyVaxxedText = document.createElement("p")
+        let icuUsedText = document.createElement("p")
 
         let positiveTestRate = ((data.metrics.testPositivityRatio) * 100).toFixed(1) + "%"
         let newDeaths = data.actuals.newDeaths
@@ -48,6 +50,7 @@ function covidInfo(){
         let fullyVaxxed = ((data.actuals.vaccinationsCompleted / data.population) * 100).toFixed(1) + "%"
         let newCases = data.metrics.caseDensity
         let infectionRate = data.metrics.infectionRate
+        let icuUsed = (data.actuals.icuBeds.typicalUsageRate * 100).toFixed(1) + "%"
 
         cdcTransmissionLevel = cdcTransmissionLevel[data.cdcTransmissionLevel]
 
@@ -61,6 +64,7 @@ function covidInfo(){
         percentVaccinatedText.innerHTML = oneDose
         oneDoseText.innerHTML = oneDose
         fullyVaxxedText.innerHTML = fullyVaxxed
+        icuUsedText.innerHTML = icuUsed
 
         console.log(fullyVaxxed)
 
@@ -72,6 +76,7 @@ function covidInfo(){
         percentVaccinatedDiv.appendChild(percentVaccinatedText)
         oneDoseDiv.appendChild(oneDoseText)
         fullyVaxxedDiv.appendChild(fullyVaxxedText)
+        icuUsedDiv.appendChild(icuUsedText)
 
         
 

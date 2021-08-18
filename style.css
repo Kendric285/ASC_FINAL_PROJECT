@@ -101,6 +101,9 @@ img{
   border: 8px solid rgb(24, 27, 43);
 }
 
-
+#vaccineCenters{
+  display: flex;
+  justify-content: left;
+}
 
 
